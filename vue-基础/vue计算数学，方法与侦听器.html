@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{fullName}}
+    {{age}}
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+          firstName:'Dell',
+          lastName:'Lee',
+          fullName:'Dell Lee',
+          age:28
+        },
+        //计算属性有缓存的特性，如果计算的值没有发生改变，将不再重新计算
+        // computed:{ // 计算属性
+        //     fullName:function () {
+        //         console.log("计算了一次");
+        //         return this.firstName + " " + this.lastName
+        //     }
+        // },
+        //方法
+        // methods:{
+        //     fullName:function () {
+        //         console.log("计算了一次");
+        //         return this.firstName + " " + this.lastName
+        //     }
+        // },
+        watch:{ // 侦听器 同样具有缓存的机制，但是watch的语法复杂了很多，一般优先推荐computed
+            firstName: function () {
+                console.log("计算了一次");
+                this.fullName = this.firstName + " " + this.lastName;
+            },
+            lastName:function () {
+                console.log("计算了一次");
+                this.fullName = this.firstName + " " + this.lastName;
+            }
+        }
+    })
+</script>
+</body>
+</html>

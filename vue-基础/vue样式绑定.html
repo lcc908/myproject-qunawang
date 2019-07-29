@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--<div @click="clicks"-->
+         <!--:class="[active,active2]"-->
+    <!--&gt;-->
+        <!--hello world-->
+    <!--</div>-->
+    <div :style="obj" @click="clicks">
+        hello world
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            obj:{
+                color:'black'
+            }
+            // isactive:false
+            // active:'',
+            // active2:'active2',
+        },
+        methods:{
+            clicks:function () {
+                this.obj.color = this.obj.color === "black" ? "red" : "black";
+                // this.active =  this.active === "active" ? "": "active"
+                // this.isactive = !this.isactive;
+            }
+        }
+    })
+</script>
+</body>
+</html>

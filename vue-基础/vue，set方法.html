@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<template v-for="(item,index) of list" :key="index">-->
+    <!--<div>-->
+    <!--{{item}}-->
+    <!--</div>-->
+    <!--<span>-->
+    <!--{{item}}-->
+    <!--</span>-->
+    <!--</template>-->
+    <!--<div v-show="show">{{msg}}</div>-->
+    <div v-for="(item,index) of list">
+        {{item}}
+    </div>
+</div>
+<script>
+    //push pop shift unshift spilce sort reverse
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            list:[
+                1,2,3,4,5,6
+            ],
+            // listObj:{
+            //     name:'dell',
+            //     age:'12',
+            //     gender:'male'
+            // }
+            // msg:'hello world'
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div toCity="toCity">父组件传给子组件的toCity:{{toCity}}</div>
+    <child @selectaa="dosomething" :aaa="asc"></child>
+    <!--<button @click="dosomething">点击此处将‘河南’发射给父组件</button>-->
+
+</div>
+<script>
+    Vue.component('child',{
+        props:['aaa'], // 用来接收父组件传给子组件的数据
+        template:'<button type="text" @click="select(`河南`)">{{aaa}}点击此处将‘河南’发射给父组件</button> ',
+        methods: {
+            select:function (val) {
+                let data = {
+                    cityname: val
+                };
+                this.$emit('selectaa',data);  //select事件触发后，自动触发selectaa事件--之后又触发父元素dosomething事件
+            }
+        }
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            toCity:'北京',
+            asc:'ewerew',
+        },
+        methods:{
+            dosomething:function (data) {
+                this.toCity = data.cityname;//改变了父组件的值
+            }
+        }
+    })
+</script>
+</body>
+</html>

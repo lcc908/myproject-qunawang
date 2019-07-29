@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <contents>
+        <!--<div class="header" slot="header">header</div>-->
+        <div class="footer" slot="footer">footer</div>
+    </contents>
+</div>
+<script>
+    Vue.component('contents',{
+        template:`
+        <div>
+            <!--<slot name="header"></slot>-->
+            <p class="content">content</p>
+            <slot name="footer"></slot>
+        </div>
+        `
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

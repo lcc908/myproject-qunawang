@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="click">change</button>
+    <one v-if="type ==='one'"></one>
+    <two v-if="type === 'two'"></two>
+    <!--&lt;!&ndash;<component :is="type"></component>&ndash;&gt; //动态组件-->
+</div>
+<script>
+    Vue.component('one',{
+        template:'<div v-once>one</div>'
+    })
+
+    Vue.component('two',{
+        template:'<div v-once>two</div>'
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            type:'one'
+        },
+        methods:{
+            click:function () {
+                this.type = this.type === 'one' ? 'two' : 'one'
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--is 方法-->
+    <!--<table>-->
+        <!--<tr is="row"></tr>-->
+        <!--<tr is="row"></tr>-->
+        <!--<tr is="row"></tr>-->
+    <!--</table>-->
+    <!--<table>-->
+        <!--<tr is="row"></tr>-->
+        <!--<tr is="row"></tr>-->
+        <!--<tr is="row"></tr>-->
+    <!--</table>-->
+    <!--<div ref="hello" @click="clicks">-->
+        <!--hello world world-->
+    <!--</div>-->
+    <counter ref="one" @changes="handchanges"></counter>
+    <counter ref="two" @changes="handchanges"></counter>
+    <div>
+        总和：{{total}}
+    </div>
+</div>
+<script>
+    // Vue.component('row',{
+    //     template:'<tr><td>this is row</td></tr>'
+    // })
+    // Vue.component('row',{
+    //     data:function () {
+    //         return {
+    //             conent:'this is conent'
+    //         }
+    //     },
+    //     template:'<tr><td>{{conent}}</td></tr>'
+    // })
+    Vue.component('counter',{
+        data:function(){
+            return {
+                number:0
+            }
+        },
+        template:'<div @click="handclick">{{number}}</div>',
+        methods:{
+            handclick:function () {
+                this.number++
+                this.$emit('changes')
+            }
+        }
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            total:0
+        },
+        methods:{
+            // clicks:function () {
+            //     console.log(this.$refs.hello.innerHTML);
+            // }
+            handchanges:function () {
+                this.total = this.$refs.one.number + this.$refs.two.number
+            }
+        }
+    })
+</script>
+</body>
+</html>

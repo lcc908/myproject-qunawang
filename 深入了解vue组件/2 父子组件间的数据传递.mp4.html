@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件传值</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <counter :coun="1" @inc="handclick"></counter>
+    <counter :coun="2" @inc="handclick"></counter>
+    <div>总数：{{total}}</div>
+</div>
+<script>
+    var counter = {
+        props:['coun'],
+        data:function(){
+            return {
+                number:this.coun
+            }
+        },
+        template: '<div @click="hanclick">{{number}}</div>',
+        methods:{
+            hanclick:function () {
+                this.number = this.number+2
+                this.$emit('inc',2)
+            }
+        }
+    }
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            counter:counter
+        },
+        data:{
+            total:3
+        },
+        methods:{
+            handclick:function (ste) {
+                console.log(ste);
+                this.total += ste
+            }
+        }
+    })
+</script>
+</body>
+</html>

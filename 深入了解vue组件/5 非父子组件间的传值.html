@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bus/总线/发布订阅模式/观察模式</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child conent="chong"></child>
+    <child conent="liu"></child>
+</div>
+<script>
+    Vue.prototype.bus =  new Vue()
+    Vue.component('child',{
+        props:{
+            conent:String
+        },
+        data:function(){
+          return {
+              sels:this.conent
+          }
+        },
+        template:'<div @click="handClick">{{sels}}</div>',
+        methods:{
+            handClick:function () {
+                // alert(this.conent)
+                this.bus.$emit('change',this.sels)
+            }
+        },
+        mounted:function () { //组件被挂载的时候执行的生命周期函数
+            var this_ = this;
+            this.bus.$on('change',function (val) {
+                this_.sels = val
+            })
+        }
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>
